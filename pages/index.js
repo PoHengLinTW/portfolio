@@ -38,7 +38,7 @@ const Home = () => (
         textAlign="center"
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
       >
-        Greeting! I'm a Computer Science graduate student at Rice University. <br/>Actively seeking for Software Engineering Internship oppotunities.
+        Greeting! I&apos;m a Computer Science graduate student at Rice University. <br/>Actively seeking for Software Engineering Internship oppotunities.
       </Box>
 
       <Box display={{ md: 'flex' }}>
