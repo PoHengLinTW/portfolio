@@ -19,7 +19,8 @@ const Works = () => (
       <Heading as="h3" fontSize={20} mb={4}>
         Works
       </Heading>
-
+      Under development
+      {/*
       <SimpleGrid columns={[1, 1, 2]} gap={6}>
         <Section>
           <WorkGridItem id="inkdrop" title="Inkdrop" thumbnail={thumbInkdrop}>
@@ -110,6 +111,7 @@ const Works = () => (
           </WorkGridItem>
         </Section>
       </SimpleGrid>
+      */}
     </Container>
   </Layout>
 )

@@ -71,6 +71,7 @@ const Navbar = props => {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
+          {/*
           <LinkItem href="/works" path={path}>
             Works
           </LinkItem>
@@ -89,6 +90,7 @@ const Navbar = props => {
             <IoLogoGithub />
             Source
           </LinkItem>
+          */}
         </Stack>
 
         <Box flex={1} align="right">
@@ -103,6 +105,7 @@ const Navbar = props => {
                 aria-label="Options"
               />
               <MenuList>
+                {/*
                 <NextLink href="/" passHref>
                   <MenuItem as={Link}>About</MenuItem>
                 </NextLink>
@@ -111,7 +114,7 @@ const Navbar = props => {
                 </NextLink>
                 <NextLink href="/posts" passHref>
                   <MenuItem as={Link}>Posts</MenuItem>
-                </NextLink>
+                </NextLink> */}
                 <MenuItem
                   as={Link}
                   href="https://github.com/PoHengLinTW"

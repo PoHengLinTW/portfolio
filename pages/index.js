@@ -69,10 +69,16 @@ const Home = () => (
 
       <Section delay={0.1}>
         <Heading as="h3" variant="section-title">
-          Work
+          Introduction
         </Heading>
         <Paragraph>
-          My introduction
+          Henry is pursuing his Master&apos; degree at Rice University. He had almost a year of experience serving as 
+          software engineer and full-stack engineer at a start up company. In the work, he integrated data streaming system
+          and online conference system for websites, which became the major feature and functionalities for later projects
+          in the company. Meanwhile, he also had interviewed with 20+ internship candidates, and led a 5 interns team to build
+          websites and content management systems. Prior to his academic study, his CS-related GPA was a solid 3.73/4 in 
+          bachelor degree, showing that he had a strong computer science background. Besides, he is also skilled in C++, Java, 
+          Python, and JavaScript. Currently, he is located in Houston, Texas, and seeking for software engineering internship oppotunities in summer 2022.
         </Paragraph>
         <Box align="center" my={4}>
           <NextLink href="/works">
@@ -111,7 +117,30 @@ const Home = () => (
 
       <Section delay={0.3}>
         <Heading as="h3" variant="section-title">
-          What I love are
+      Technical Skills
+        </Heading>
+        <BioYear>Programming Language</BioYear>
+        <Paragraph>
+          C/C++, Java, Python, JavaScript, TypeScript, C#, Matlab, Shell script, Golang
+        </Paragraph><br/>
+        <BioYear>Frameworks / Tools</BioYear>
+        <Paragraph>
+          VueJS, ReactJS, ReduxJS, AngularJS, NodeJS, ExpressJS, WebRTC
+        </Paragraph><br/>
+        <BioYear>Cloud / Infrastructure</BioYear>
+        <Paragraph>
+          Google Cloud Platform, AWS, Terraform, Docker, Kubernetes, Nginx
+        </Paragraph><br/>
+        <BioYear>Data / Database</BioYear>
+        <Paragraph>
+          GraphQL, InfluxDB, PostgreSQL, MongoDB, Redis, Kafka
+        </Paragraph>
+        
+      </Section>
+
+      <Section delay={0.3}>
+        <Heading as="h3" variant="section-title">
+          Hobbies
         </Heading>
         <Paragraph>
           Guitar, Workouts, Coding, PC Games, Full-Stack, Machine Learning
@@ -180,7 +209,7 @@ const Home = () => (
           </ListItem>
         </List>
 
-
+        {/*
         <SimpleGrid columns={[1, 2, 2]} gap={6}>
           <GridItem
             href="https://www.youtube.com/devaslife"
@@ -205,6 +234,7 @@ const Home = () => (
             </Button>
           </NextLink>
         </Box>
+        */}
       </Section>
     </Container>
   </Layout>
