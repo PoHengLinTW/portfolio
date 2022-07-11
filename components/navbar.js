@@ -1,5 +1,5 @@
 import Logo from './logo'
-// import NextLink from 'next/link'
+import NextLink from 'next/link'
 import {
   Container,
   Box,
@@ -16,28 +16,28 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
-// import { IoLogoGithub } from 'react-icons/io5'
+import { IoLogoGithub } from 'react-icons/io5'
 
-// const LinkItem = ({ href, path, _target, children, ...props }) => {
-//   const active = path === href
-//   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
-//   return (
-//     <NextLink href={href} passHref>
-//       <Link
-//         p={2}
-//         bg={active ? 'grassTeal' : undefined}
-//         color={active ? '#202023' : inactiveColor}
-//         _target={_target}
-//         {...props}
-//       >
-//         {children}
-//       </Link>
-//     </NextLink>
-//   )
-// }
+const LinkItem = ({ href, path, _target, children, ...props }) => {
+  const active = path === href
+  const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+  return (
+    <NextLink href={href} passHref>
+      <Link
+        p={2}
+        bg={active ? 'grassTeal' : undefined}
+        color={active ? '#202023' : inactiveColor}
+        _target={_target}
+        {...props}
+      >
+        {children}
+      </Link>
+    </NextLink>
+  )
+}
 
 const Navbar = props => {
-  // const { path } = props
+  const { path } = props
 
   return (
     <Box
@@ -71,16 +71,21 @@ const Navbar = props => {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
-          {/*
-          <LinkItem href="/works" path={path}>
-            Works
+          <LinkItem href="/" path={path}>
+            Home
           </LinkItem>
-          <LinkItem href="/posts" path={path}>
-            Posts
+          <LinkItem href="/resume" path={path}>
+            Resume
+          </LinkItem>
+          <LinkItem href="/experience" path={path}>
+            Experience
+          </LinkItem>
+          <LinkItem href="/projects" path={path}>
+            Projects
           </LinkItem>
           <LinkItem
             _target="_blank"
-            href="https://github.com/craftzdog/craftzdog-homepage"
+            href="https://github.com/PoHengLinTW"
             path={path}
             display="inline-flex"
             alignItems="center"
@@ -88,9 +93,8 @@ const Navbar = props => {
             pl={2}
           >
             <IoLogoGithub />
-            Source
+            Github
           </LinkItem>
-          */}
         </Stack>
 
         <Box flex={1} align="right">
@@ -105,22 +109,32 @@ const Navbar = props => {
                 aria-label="Options"
               />
               <MenuList>
-                {/*
                 <NextLink href="/" passHref>
-                  <MenuItem as={Link}>About</MenuItem>
+                  <MenuItem as={Link}>Home</MenuItem>
                 </NextLink>
-                <NextLink href="/works" passHref>
-                  <MenuItem as={Link}>Works</MenuItem>
+                <NextLink href="/resume" passHref>
+                  <MenuItem as={Link}>Resume</MenuItem>
                 </NextLink>
-                <NextLink href="/posts" passHref>
-                  <MenuItem as={Link}>Posts</MenuItem>
-                </NextLink> */}
-                <MenuItem
-                  as={Link}
-                  href="https://github.com/PoHengLinTW"
-                >
-                  Github
-                </MenuItem>
+                <NextLink href="/experience" passHref>
+                  <MenuItem as={Link}>Experience</MenuItem>
+                </NextLink>
+                <NextLink href="/projects" passHref>
+                  <MenuItem as={Link}>Projects</MenuItem>
+                </NextLink>
+
+                  <LinkItem
+                    _target="_blank"
+                    href="https://github.com/PoHengLinTW"
+                    path={path}
+                    display="inline-flex"
+                    alignItems="center"
+                    style={{ gap: 4 }}
+                    pl={2}
+                  >
+                    <IoLogoGithub />
+                    Github
+                  </LinkItem>
+
               </MenuList>
             </Menu>
           </Box>

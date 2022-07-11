@@ -5,11 +5,6 @@ import { Box, Container } from '@chakra-ui/react'
 import Footer from '../footer'
 import VoxelDogLoader from '../voxel-dog-loader'
 
-const LazyVoxelDog = dynamic(() => import('../voxel-dog'), {
-  ssr: false,
-  loading: () => <VoxelDogLoader />
-})
-
 const Main = ({ children, router }) => {
   return (
     <Box as="main" pb={8}>
@@ -19,16 +14,15 @@ const Main = ({ children, router }) => {
         <meta name="author" content="Po-Heng Lin" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <meta property="og:site_name" content="Po-Heng(Henry) Lin's Homepage" />
+        <meta property="og:site_name" content="Henry Lin's Homepage" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/card.png" />
-        <title>Po-Heng(Henry) Lin - Homepage</title>
+        <title>Henry Lin - Homepage</title>
       </Head>
 
       <NavBar path={router.asPath} />
 
       <Container maxW="container.md" pt={14}>
-        <LazyVoxelDog />
 
         {children}
 

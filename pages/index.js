@@ -10,14 +10,14 @@ import {
   List,
   ListItem,
   Icon,
-  useColorModeValue
+  useColorModeValue,
+  UnorderedList
 } from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Paragraph from '../components/paragraph'
 import { BioSection, BioYear, BioTab } from '../components/bio'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
-// import { GridItem } from '../components/grid-item'
 import {
   IoLogoTwitter,
   IoLogoInstagram,
@@ -25,8 +25,6 @@ import {
   IoLogoLinkedin,
   IoMail
 } from 'react-icons/io5'
-// import thumbYouTube from '../public/images/links/youtube.png'
-// import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
 
 const Home = () => (
   <Layout>
@@ -38,15 +36,15 @@ const Home = () => (
         textAlign="center"
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
       >
-        Greeting! I&apos;m a Computer Science graduate student at Rice University. <br/>Actively seeking for Software Engineering Internship oppotunities.
+        Greeting! I&apos;m a Computer Science graduate student at Rice University<br/> and a Production engineer intern at Meta.<br/> Also actively seeking for Software Engineer oppotunities.
       </Box>
 
       <Box display={{ md: 'flex' }}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
-            Po-Heng (Henry) Lin
+            Henry Lin
           </Heading>
-          <p>Master of Computer Science Student <br/>( Software Engineer / Fullstack Engineer )</p>
+          <p>Master of Computer Science Student <br/>( Software Engineer / Production engineer intern )</p>
         </Box>
         <Box
           flexShrink={0}
@@ -72,21 +70,18 @@ const Home = () => (
           Introduction
         </Heading>
         <Paragraph>
-          Henry is pursuing his Master&apos; degree at Rice University. He had almost a year of experience serving as 
-          software engineer and full-stack engineer at a start up company. In the work, he integrated data streaming system
-          and online conference system for websites, which became the major feature and functionalities for later projects
-          in the company. Meanwhile, he also had interviewed with 20+ internship candidates, and led a 5 interns team to build
-          websites and content management systems. Prior to his academic study, his CS-related GPA was a solid 3.73/4 in 
-          bachelor degree, showing that he had a strong computer science background. Besides, he is also skilled in C++, Java, 
-          Python, and JavaScript. Currently, he is located in Houston, Texas, and seeking for software engineering internship oppotunities in summer 2022.
+          Henry had a year of experience as a 
+          software engineer at a start up company in Taiwan. For a career as a software engineer, 
+          he had strong learning speed and he had solid knowledge in various layers from deep down to 
+          operating system, databases, container, distributed servers, fullstack, CI/CD automation.
+          His co-workers always said he is independent in developing and working and he always asks
+          questions after he has done his research. 
         </Paragraph>
-        <Box align="center" my={4}>
-          <NextLink href="/works">
-            <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              My portfolio
-            </Button>
-          </NextLink>
-        </Box>
+        <Paragraph>
+          Currently he is pursuing his Master&apos; degree at Rice University with GPA 3.8/4. Prior to his academic study, his CS-related GPA was a solid 3.73/4 in 
+          bachelor degree, showing that he had a strong computer science background. Besides, he is also skilled in C++, Java, Hack 
+          Python, and JavaScript. Currently, he is located in Houston, Texas, and seeking for software engineer oppotunities for 2023.
+        </Paragraph>
       </Section>
 
       <Section delay={0.2}>
@@ -105,7 +100,7 @@ const Home = () => (
         </BioSection>
         <BioSection>
           <BioYear>2020 - 2021</BioYear>
-          Worked at{' '}
+          Software engineer at{' '}
           <Link href="http://www.patere.net" target="_blank">Patere Co.</Link>
         </BioSection>
         <BioSection>
@@ -113,6 +108,25 @@ const Home = () => (
           Studied the Master of Computer Science at{' '}
           <Link href="https://www.rice.edu/" target="_blank">Rice University</Link>
         </BioSection>
+        <BioSection>
+          <BioYear>2022</BioYear>
+          <BioTab/>
+          Production engineer intern (infra) at{' '}
+          <Link href="https://about.facebook.com/" target="_blank">Meta Platform Inc.</Link>
+        </BioSection>
+      </Section>
+      
+      <Section delay={0.3}>
+        <Heading as="h3" variant="section-title">
+        Career Interests
+        </Heading>
+        <UnorderedList>
+        <ListItem><BioYear>Web Development</BioYear></ListItem>
+        <ListItem><BioYear>Distributed System</BioYear></ListItem>
+        <ListItem><BioYear>Cloud Computing</BioYear></ListItem>
+        <ListItem><BioYear>Operating System and Kernel</BioYear></ListItem>
+        <ListItem><BioYear>Infrastructure</BioYear></ListItem>
+        </UnorderedList>
       </Section>
 
       <Section delay={0.3}>
@@ -125,11 +139,11 @@ const Home = () => (
         </Paragraph><br/>
         <BioYear>Frameworks / Tools</BioYear>
         <Paragraph>
-          VueJS, ReactJS, ReduxJS, AngularJS, NodeJS, ExpressJS, WebRTC
+          Git, Mercurial, ReactJS, NodeJS, ExpressJS, WebRTC, Nginx, ZooKeeper
         </Paragraph><br/>
         <BioYear>Cloud / Infrastructure</BioYear>
         <Paragraph>
-          Google Cloud Platform, AWS, Terraform, Docker, Kubernetes, Nginx
+          GCP, AWS, Terraform, Docker, Kubernetes
         </Paragraph><br/>
         <BioYear>Data / Database</BioYear>
         <Paragraph>

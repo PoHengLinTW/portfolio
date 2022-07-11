@@ -35,7 +35,7 @@ const Logo = () => {
             fontWeight="bold"
             ml={3}
           >
-            Po-Heng(Henry) Lin
+            Henry Lin
           </Text>
         </LogoBox>
       </a>
