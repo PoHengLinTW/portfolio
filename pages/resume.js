@@ -12,17 +12,15 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 const Resume = () => {
   return (
     <div>
-    <Heading as="h3" fontSize={20} mb={4}>
+      <Heading as="h3" fontSize={20} mb={4}>
         My Resume (Update: July 9 2022)
-    </Heading>
+      </Heading>
 
-    <Section>
+      <Section>
         <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-        <Viewer
-            fileUrl="http://localhost:3000/Henry.Lin-CV.pdf"
-        />
+          <Viewer fileUrl="/Henry.Lin-CV.pdf" />
         </Worker>
-    </Section>
+      </Section>
     </div>
   )
 }
