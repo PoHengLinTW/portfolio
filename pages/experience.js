@@ -10,6 +10,7 @@ import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItemExternal } from '../components/grid-item'
 
+import BBImage from '../public/images/BBIMG.jpg'
 import MetaImage from '../public/images/meta.webp'
 import PatereImage from '../public/images/patere.png'
 import CCUImage from '../public/images/ccu.jpeg'
@@ -24,6 +25,25 @@ const Experience = () => {
             Experience
           </Heading>
           <SimpleGrid gap={6}>
+            <Section delay={0.3}>
+              <WorkGridItemExternal
+                id="sde-bb"
+                url="https://www.bloomberg.com/"
+                title="Software engineer"
+                thumbnail={BBImage}
+              >
+                Bloomberg L.P., New York City, NY, Feb 2023 - present
+              </WorkGridItemExternal>
+              <UnorderedList style={{ marginTop: 10 }}>
+                <ListItem>
+                  Built micro frontend services for more than 10 web product at Bloomberg.
+                </ListItem>
+                <ListItem>
+                  Created a static asset/bundle host server with s3 buckets as a source for the micro frontend service
+                </ListItem>
+              </UnorderedList>
+            </Section>
+            <Divider />
             <Section delay={0.3}>
               <WorkGridItemExternal
                 id="PE"

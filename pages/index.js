@@ -13,7 +13,6 @@ import {
   useColorModeValue,
   UnorderedList
 } from '@chakra-ui/react'
-import { ChevronRightIcon } from '@chakra-ui/icons'
 import Paragraph from '../components/paragraph'
 import { BioSection, BioYear, BioTab } from '../components/bio'
 import Layout from '../components/layouts/article'
@@ -36,7 +35,7 @@ const Home = () => (
         textAlign="center"
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
       >
-        Greeting! I&apos;m a Computer Science graduate student at Rice University<br/> and a Production engineer intern at Meta.<br/> Also actively seeking for Software Engineer oppotunities.
+        Hello there! <br/> My name is Henry Lin and I am a software engineer at Bloomberg L.P. working on web infrastructure for lots of web products at Bloomberg.
       </Box>
 
       <Box display={{ md: 'flex' }}>
@@ -44,7 +43,8 @@ const Home = () => (
           <Heading as="h2" variant="page-title">
             Henry Lin
           </Heading>
-          <p>Master of Computer Science Student <br/>( Software Engineer / Production engineer intern )</p>
+          <p>Software Engineer</p>
+          <p>Master of Computer Science Student at Rice University </p>
         </Box>
         <Box
           flexShrink={0}
@@ -59,7 +59,8 @@ const Home = () => (
             maxWidth="100px"
             display="inline-block"
             borderRadius="full"
-            src="/images/photo.jpeg"
+            // src="/images/photo.jpeg"
+            src="https://avatars.githubusercontent.com/u/28283562"
             alt="Profile image"
           />
         </Box>
@@ -70,17 +71,18 @@ const Home = () => (
           Introduction
         </Heading>
         <Paragraph>
-          Henry had a year of experience as a 
-          software engineer at a start up company in Taiwan. For a career as a software engineer, 
+          Henry had a year of experience as a software engineer at a start up company in Taiwan. 
+          In 2022 May, he joined Meta Platform Inc. as a production engineer intern working on 
+          real-time message publish/subscription for 1 billion messages per day.
+          For a career as a software engineer, 
           he had strong learning speed and he had solid knowledge in various layers from deep down to 
           operating system, databases, container, distributed servers, fullstack, CI/CD automation.
-          His co-workers always said he is independent in developing and working and he always asks
-          questions after he has done his research. 
         </Paragraph>
         <Paragraph>
-          Currently he is pursuing his Master&apos; degree at Rice University with GPA 3.8/4. Prior to his academic study, his CS-related GPA was a solid 3.73/4 in 
-          bachelor degree, showing that he had a strong computer science background. Besides, he is also skilled in C++, Java, Hack 
-          Python, and JavaScript. Currently, he is located in Houston, Texas, and seeking for software engineer oppotunities for 2023.
+          Currently he is a software engineer at web infra team at Bloomberg L.P. The team thrives to 
+          provide <strong>Micro Frontend</strong> solutions for many of the web products at Bloomberg.
+          Micro frontend is an innovative solution to modern web development, which enables the both the 
+          frontend and backend engineers build things faster and a manageable way.
         </Paragraph>
       </Section>
 
@@ -109,10 +111,15 @@ const Home = () => (
           <Link href="https://www.rice.edu/" target="_blank">Rice University</Link>
         </BioSection>
         <BioSection>
-          <BioYear>2022</BioYear>
+        <BioYear>2022</BioYear>
           <BioTab/>
           Production engineer intern (infra) at{' '}
           <Link href="https://about.facebook.com/" target="_blank">Meta Platform Inc.</Link>
+        </BioSection>
+        <BioSection>
+          <BioYear>2023 - now</BioYear>
+          {' '}Software engineer (web infra) at{' '}
+          <Link href="https://www.bloomberg.com/" target="_blank">Bloomberg L.P.</Link>
         </BioSection>
       </Section>
       
