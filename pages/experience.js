@@ -9,11 +9,6 @@ import {
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItemExternal } from '../components/grid-item'
-
-import BBImage from '../public/images/BBIMG.jpg'
-import MetaImage from '../public/images/meta.webp'
-import PatereImage from '../public/images/patere.png'
-import CCUImage from '../public/images/ccu.jpeg'
 import Paragraph from '../components/paragraph'
 
 const Experience = () => {
@@ -30,7 +25,7 @@ const Experience = () => {
                 id="sde-bb"
                 url="https://www.bloomberg.com/"
                 title="Software engineer"
-                thumbnail={BBImage}
+                thumbnail="/images/BBIMG.jpg"
               >
                 Bloomberg L.P., New York City, NY, Feb 2023 - present
               </WorkGridItemExternal>
@@ -49,7 +44,7 @@ const Experience = () => {
                 id="PE"
                 url="https://about.facebook.com/"
                 title="Production engineer intern (infra)"
-                thumbnail={MetaImage}
+                thumbnail="/images/meta.webp"
               >
                 Meta Platforms Inc. (formerly Facebook), Bellevue, WA, May 2022
                 - Aug. 2022
@@ -78,7 +73,7 @@ const Experience = () => {
                 id="SWE"
                 title="Software engineer"
                 url="https://patere.net/"
-                thumbnail={PatereImage}
+                thumbnail="/images/patere.png"
               >
                 Patere Co. Ltd, Hsinchu, Taiwan, Jun. 2020 - Jul. 2021
               </WorkGridItemExternal>
@@ -111,7 +106,7 @@ const Experience = () => {
               <WorkGridItemExternal
                 id="RS"
                 title="Research student"
-                thumbnail={CCUImage}
+                thumbnail="/images/ccu.jpeg"
                 url="https://www.cs.ccu.edu.tw/~damon/"
               >
                 Innovative Computing and Visualization Lab <br />
