@@ -1,5 +1,4 @@
-import { Container, Heading } from '@chakra-ui/react'
-import Layout from '../components/layouts/article'
+import { Heading } from '@chakra-ui/react'
 import Section from '../components/section'
 
 // Core viewer
