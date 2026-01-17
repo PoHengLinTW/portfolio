@@ -1,27 +1,47 @@
-# Henry's Homepage
-- link: https://henrylin-portfolio.herokuapp.com/
+# OpenNext Starter
 
-## Stack
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-- [Next.js](https://nextjs.org/) - A React framework with hybrid static & server rendering, and route pre-fetching, etc.
-- [Chakra UI](https://chakra-ui.com/) - A simple, modular and accessible component library for React
-- [Three.js](https://threejs.org/) - 3D library for JavaScript
-- [Framer Motion](https://www.framer.com/motion/) - An animation library for React
+## Getting Started
 
-## Project structure
+Read the documentation at https://opennext.js.org/cloudflare.
 
-```
-$PROJECT_ROOT
-│   # Page files
-├── pages
-│   # React component files
-├── components
-│   # Non-react modules
-├── lib
-│   # Static files for images and 3d model file
-└── public
+## Develop
+
+Run the Next.js development server:
+
+```bash
+npm run dev
+# or similar package manager command
 ```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- Credit: https://github.com/craftzdog/craftzdog-homepage
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## Preview
+
+Preview the application locally on the Cloudflare runtime:
+
+```bash
+npm run preview
+# or similar package manager command
+```
+
+## Deploy
+
+Deploy the application to Cloudflare:
+
+```bash
+npm run deploy
+# or similar package manager command
+```
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
