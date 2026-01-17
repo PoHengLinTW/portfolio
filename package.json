@@ -13,10 +13,19 @@
 		"cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
 	},
 	"dependencies": {
+		"@chakra-ui/icons": "^2.2.4",
+		"@chakra-ui/react": "^2.10.9",
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.1",
 		"@opennextjs/cloudflare": "^1.14.4",
+		"@react-pdf-viewer/core": "^3.12.0",
+		"@react-pdf-viewer/default-layout": "^3.12.0",
+		"framer-motion": "^11.0.0",
 		"next": "15.5.9",
+		"pdfjs-dist": "^3.11.174",
 		"react": "19.1.4",
-		"react-dom": "19.1.4"
+		"react-dom": "19.1.4",
+		"react-icons": "^5.5.0"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3",
@@ -26,6 +35,7 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9",
 		"eslint-config-next": "15.4.6",
+		"prettier": "^3.8.0",
 		"tailwindcss": "^4",
 		"typescript": "^5",
 		"wrangler": "^4.59.2"

@@ -16,7 +16,7 @@ const Resume = () => {
       </Heading>
 
       <Section>
-        <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
           <Viewer fileUrl="/Henry.Lin-CV.pdf" />
         </Worker>
       </Section>
