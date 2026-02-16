@@ -17,8 +17,6 @@ import { BioSection, BioYear, BioTab } from '../components/bio'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import {
-  IoLogoTwitter,
-  IoLogoInstagram,
   IoLogoGithub,
   IoLogoLinkedin,
   IoMail
@@ -173,6 +171,17 @@ const Home = () => (
         </Heading>
         <List>
           <ListItem>
+            <Link href="mailto:me@henrylin.dev" target="_blank">
+              <Button
+                variant="ghost"
+                colorScheme="teal"
+                leftIcon={<Icon as={IoMail} />}
+              >
+                me@henrylin.dev
+              </Button>
+            </Link>
+          </ListItem>
+          <ListItem>
             <Link href="https://github.com/PoHengLinTW" target="_blank">
               <Button
                 variant="ghost"
@@ -184,28 +193,6 @@ const Home = () => (
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="https://twitter.com/pikapikachu555" target="_blank">
-              <Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<Icon as={IoLogoTwitter} />}
-              >
-                @pikapikachu555 (Not frequently used)
-              </Button>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="https://www.instagram.com/henrylin_0111/" target="_blank">
-              <Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<Icon as={IoLogoInstagram} />}
-              >
-                @henrylin_0111
-              </Button>
-            </Link>
-          </ListItem>
-          <ListItem>
             <Link href="https://www.linkedin.com/in/pohenglintw/" target="_blank">
               <Button
                 variant="ghost"
@@ -213,17 +200,6 @@ const Home = () => (
                 leftIcon={<Icon as={IoLogoLinkedin} />}
               >
                 @pohenglintw
-              </Button>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="mailto:poheng.henry.lin@gmail.com" target="_blank">
-              <Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<Icon as={IoMail} />}
-              >
-                poheng.henry.lin@gmail.com
               </Button>
             </Link>
           </ListItem>
