@@ -1,19 +1,18 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-	/* config options here */
-	serverExternalPackages: [
-		"@emotion/react",
-		"@emotion/styled",
-		"@emotion/utils",
-		"@emotion/cache",
-		"@emotion/use-insertion-effect-with-fallbacks",
-	],
-};
+  typedRoutes: true,
+  async redirects() {
+    return [
+      { source: '/resume', destination: '/resume.pdf', permanent: true },
+      { source: '/Henry.Lin-CV.pdf', destination: '/resume.pdf', permanent: true }
+    ]
+  }
+}
 
-export default nextConfig;
+export default nextConfig
 
-// Enable calling `getCloudflareContext()` in `next dev`.
+// Enable calling `getCloudflareContext()` (and the local D1 binding) in `next dev`.
 // See https://opennext.js.org/cloudflare/bindings#local-access-to-bindings.
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-initOpenNextCloudflareForDev();
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+initOpenNextCloudflareForDev()
