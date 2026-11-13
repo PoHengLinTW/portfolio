@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+
+/* Palette tokens. Dark is the "Split Index" palette; light mirrors it. Follows the OS setting. */
+:root {
+  --bg: #f6f9f9;
+  --surface: #ffffff;
+  --surface-line: #dde7e7;
+  --line: #c9d8d9;
+  --fg: #3b4d52;
+  --fg-strong: #0b1215;
+  --fg-sub: #1f2f33;
+  --muted: #5f7277;
+  --accent: #0f766e;
+  --accent-soft: #e0f2ef;
+  --monogram: #e6f0ef;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1215;
+    --surface: #0f1a1e;
+    --surface-line: #16282d;
+    --line: #1f3a40;
+    --fg: #9fb0b6;
+    --fg-strong: #eef4f5;
+    --fg-sub: #dbe5e7;
+    --muted: #7d9096;
+    --accent: #5eead4;
+    --accent-soft: #10302f;
+    --monogram: #13242a;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-line: var(--surface-line);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-fg-strong: var(--fg-strong);
+  --color-fg-sub: var(--fg-sub);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-monogram: var(--monogram);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-bg font-sans text-base leading-[1.65] text-fg antialiased;
+  }
+  ::selection {
+    @apply bg-accent text-bg;
+  }
+  :focus-visible {
+    @apply rounded outline-2 outline-offset-3 outline-accent;
+  }
+  [id] {
+    scroll-margin-top: 3rem;
+  }
+}
+
+@utility eyebrow {
+  @apply font-mono text-[13px] font-medium tracking-[0.12em] text-accent uppercase;
+}
+
+/* Long-form Markdown (About, case studies, posts). */
+@utility prose-site {
+  & > * + * {
+    @apply mt-4;
+  }
+  & h2 {
+    @apply mt-14 text-2xl font-semibold tracking-tight text-fg-strong;
+  }
+  & h3 {
+    @apply mt-9 text-lg font-semibold text-fg-strong;
+  }
+  & h2 + *,
+  & h3 + * {
+    @apply mt-3;
+  }
+  & strong {
+    @apply font-semibold text-fg-sub;
+  }
+  & a {
+    @apply text-fg-strong underline decoration-line underline-offset-4 hover:text-accent hover:decoration-accent;
+  }
+  & ul {
+    @apply list-disc pl-5 marker:text-muted;
+  }
+  & ol {
+    @apply list-decimal pl-5 marker:text-muted;
+  }
+  & li + li {
+    @apply mt-1.5;
+  }
+  & blockquote {
+    @apply border-l-2 border-accent pl-4 text-fg-sub;
+  }
+  & code {
+    @apply rounded bg-surface px-1.5 py-0.5 font-mono text-[0.875em] text-fg-strong;
+  }
+  & pre {
+    @apply overflow-x-auto rounded-xl border border-surface-line bg-surface p-4 text-sm leading-relaxed;
+  }
+  & pre code {
+    @apply bg-transparent p-0;
+  }
+  & hr {
+    @apply my-10 border-line;
+  }
+}

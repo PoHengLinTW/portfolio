@@ -10,7 +10,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "portfolio",
 	"main": ".open-next/worker.js",
-	"compatibility_date": "2025-12-01",
+	"compatibility_date": "2026-11-01",
 	"compatibility_flags": [
 		"nodejs_compat",
 		"global_fetch_strictly_public"
@@ -32,6 +32,20 @@
 			"service": "portfolio"
 		}
 	],
+	"d1_databases": [
+		{
+			// Create with `npx wrangler d1 create portfolio`, then paste the id here.
+			"binding": "DB",
+			"database_name": "portfolio",
+			"database_id": "e24e9e4d-4870-47b4-ac02-e1cbd2a4f3b5",
+			"migrations_dir": "migrations"
+		}
+	],
+	"vars": {
+		// Cloudflare Access application protecting henrylin.dev/admin* (policy: owner email only).
+		"CF_ACCESS_TEAM_DOMAIN": "henrylin98.cloudflareaccess.com",
+		"CF_ACCESS_AUD": "3347c8af09208084dadab6feff3a9596731837e117a3124339617b98f44d2173"
+	},
 	"observability": {
 		"enabled": true
 	}
