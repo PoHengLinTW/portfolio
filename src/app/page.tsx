@@ -40,7 +40,6 @@ export default async function Home() {
   return (
     <SplitLayout
       settings={settings}
-      showWriting={posts.length > 0}
       nav={{ items: sections, label: 'Sections' }}
       morph
       showLocation

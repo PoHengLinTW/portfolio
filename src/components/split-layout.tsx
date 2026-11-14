@@ -1,7 +1,7 @@
 import type { Settings } from '@/lib/db'
 import { ScrollSpyNav, type SpyItem } from './scroll-spy-nav'
 import { SiteHeader } from './site-header'
-import { Footer, SocialLinks } from './ui'
+import { SocialLinks } from './ui'
 
 export interface SplitNav {
   items: SpyItem[]
@@ -13,7 +13,7 @@ export interface SplitNav {
 /**
  * The "Split Index" page frame shared by every public page: a left column that stays pinned on
  * wide screens (page intro, an in-page menu that tracks the section in view, social links) and a
- * right column with the scrolling content and footer.
+ * right column with the scrolling content.
  *
  * `morph` is the homepage mode, where HeroIdentity in `intro` animates into the header. It needs
  * the column to allow overflow, so only the other pages get a scrollable column as a fallback for
@@ -21,7 +21,6 @@ export interface SplitNav {
  */
 export function SplitLayout({
   settings,
-  showWriting,
   intro,
   nav,
   morph = false,
@@ -29,7 +28,6 @@ export function SplitLayout({
   children
 }: {
   settings: Settings
-  showWriting: boolean
   intro: React.ReactNode
   nav?: SplitNav
   morph?: boolean
@@ -38,11 +36,7 @@ export function SplitLayout({
 }) {
   return (
     <>
-      <SiteHeader
-        name={settings.name ?? 'Home'}
-        showWriting={showWriting}
-        morph={morph}
-      />
+      <SiteHeader name={settings.name ?? 'Home'} morph={morph} />
       <div className="mx-auto flex max-w-[1160px] flex-wrap gap-16 px-4 pt-14 pb-20 sm:px-6 sm:pt-24 lg:flex-nowrap lg:pb-0">
         <header
           className={`flex flex-[1_1_340px] flex-col gap-6 lg:sticky lg:top-(--header-h) lg:-mt-24 lg:h-[calc(100dvh-var(--header-h))] lg:max-w-[420px] lg:pt-24 lg:pb-10 ${
@@ -67,7 +61,6 @@ export function SplitLayout({
         {/* Bottom padding lives here on wide screens, so the pinned column never collides with it. */}
         <main id="content" className="flex min-w-0 flex-[999_1_560px] flex-col gap-24 lg:pb-20">
           {children}
-          <Footer settings={settings} />
         </main>
       </div>
     </>

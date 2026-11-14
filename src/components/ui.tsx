@@ -82,23 +82,3 @@ export function SocialLinks({ settings }: { settings: Settings }) {
     </ul>
   )
 }
-
-export function Footer({ settings }: { settings: Settings }) {
-  return (
-    <footer className="text-sm text-muted">
-      <p>
-        Built with Next.js and Tailwind CSS, deployed on Cloudflare Workers.
-        {settings.email && (
-          <>
-            {' '}
-            Say hi at{' '}
-            <a href={`mailto:${settings.email}`} className="text-fg hover:text-accent">
-              {settings.email}
-            </a>
-            .
-          </>
-        )}
-      </p>
-    </footer>
-  )
-}

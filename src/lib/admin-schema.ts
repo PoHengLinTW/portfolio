@@ -21,6 +21,8 @@ export interface Entity {
   orderBy: string
   /** Public URL for a row, used for "View" links. */
   publicPath?: (row: Record<string, unknown>) => string
+  /** Rows can be previewed, drafts included, at /admin/preview + their public path. */
+  preview?: boolean
   fields: Field[]
 }
 
@@ -35,6 +37,7 @@ export const ENTITIES = {
     subtitleField: 'period',
     orderBy: 'sort, id',
     publicPath: r => `/work/${r.slug}`,
+    preview: true,
     fields: [
       { name: 'title', label: 'Title', type: 'text', required: true },
       { name: 'slug', label: 'Slug', type: 'text', required: true, help: 'URL: /work/<slug>' },
@@ -127,6 +130,7 @@ export const ENTITIES = {
     subtitleField: 'published_at',
     orderBy: 'published_at DESC, id DESC',
     publicPath: r => `/writing/${r.slug}`,
+    preview: true,
     fields: [
       { name: 'title', label: 'Title', type: 'text', required: true },
       { name: 'slug', label: 'Slug', type: 'text', required: true, help: 'URL: /writing/<slug>' },
@@ -139,6 +143,12 @@ export const ENTITIES = {
 } satisfies Record<string, Entity>
 
 export type EntityKey = keyof typeof ENTITIES
+
+/** Where to preview a row (its public path under /admin/preview), or null if it has none yet. */
+export function previewPath(entity: Entity, row: Record<string, unknown>): string | null {
+  if (!entity.preview || !entity.publicPath || !row.slug) return null
+  return `/admin/preview${entity.publicPath(row)}`
+}
 
 export function getEntity(key: string): Entity | null {
   return Object.hasOwn(ENTITIES, key) ? ENTITIES[key as EntityKey] : null

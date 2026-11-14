@@ -1,4 +1,5 @@
 import type { Field } from '@/lib/admin-schema'
+import { MarkdownEditor } from './markdown-editor'
 
 const input =
   'w-full rounded-lg border border-line bg-surface px-3 py-2 text-fg-strong placeholder:text-muted focus:border-accent focus:outline-none'
@@ -36,9 +37,7 @@ export function FormField({ field, value, name = field.name }: { field: Field; v
       )
       break
     case 'markdown':
-      control = (
-        <textarea id={id} name={name} defaultValue={str} rows={24} spellCheck className={`${input} font-mono text-sm leading-relaxed`} aria-describedby={describedBy} />
-      )
+      control = <MarkdownEditor id={id} name={name} defaultValue={str} className={input} describedBy={describedBy} />
       break
     case 'number':
       control = <input id={id} type="number" name={name} defaultValue={str} className={`${input} max-w-32`} aria-describedby={describedBy} />

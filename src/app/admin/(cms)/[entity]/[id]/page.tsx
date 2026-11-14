@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Route } from 'next'
 import { notFound } from 'next/navigation'
 import { getDB, LIST_COLUMNS } from '@/lib/db'
-import { getEntity } from '@/lib/admin-schema'
+import { getEntity, previewPath } from '@/lib/admin-schema'
 import { deleteEntity, saveEntity } from '../../actions'
 import { FormField, SubmitButton } from '../../form-fields'
 
@@ -28,6 +28,7 @@ export default async function EntityEdit({ params }: PageProps<'/admin/[entity]/
     }
   }
 
+  const preview = id === 'new' ? null : previewPath(entity, row)
   const save = saveEntity.bind(null, key, id)
   const remove = deleteEntity.bind(null, key, id)
 
@@ -36,9 +37,25 @@ export default async function EntityEdit({ params }: PageProps<'/admin/[entity]/
       <Link href={`/admin/${key}` as Route} className="eyebrow inline-flex min-h-11 items-center hover:text-fg-strong">
         ← {entity.label}
       </Link>
-      <h1 className="mt-2 text-3xl font-semibold tracking-tight text-fg-strong">
-        {id === 'new' ? `New ${entity.singular}` : String(row[entity.titleField] || `Edit ${entity.singular}`)}
-      </h1>
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-3xl font-semibold tracking-tight text-fg-strong">
+          {id === 'new' ? `New ${entity.singular}` : String(row[entity.titleField] || `Edit ${entity.singular}`)}
+        </h1>
+        {preview && (
+          <Link
+            href={preview as Route}
+            target="_blank"
+            className="inline-flex min-h-11 items-center rounded-lg border border-line px-5 font-medium text-fg-strong hover:border-accent hover:text-accent"
+          >
+            Preview ↗
+          </Link>
+        )}
+      </div>
+      {preview && (
+        <p className="mt-2 text-sm text-muted">
+          The page preview shows the last saved version. The body editor previews as you type.
+        </p>
+      )}
 
       <form action={save} className="mt-8 flex max-w-3xl flex-col gap-6">
         {entity.fields.map(f => (
