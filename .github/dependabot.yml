@@ -5,6 +5,12 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    ignore:
+      # TS 7 (Go compiler) has no JS API yet, so typescript-eslint caps at <6.1.
+      # Remove once typescript-eslint supports TS 7:
+      # https://github.com/typescript-eslint/typescript-eslint/issues/10940
+      - dependency-name: typescript
+        versions: ['>=7']
     groups:
       # Batch routine bumps into one weekly PR; majors still get their own PRs.
       npm-minor-and-patch:
