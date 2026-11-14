@@ -15,10 +15,11 @@ export default async function WorkPage() {
       eyebrow="Selected work"
       title="Case studies"
       intro="Platform work I owned or co-designed. Each one covers the context, the approach, the outcome, and what I learned."
+      nav={{ items: studies.map(s => ({ id: s.slug, label: s.title })), label: 'Case studies', variant: 'toc' }}
     >
       <ol className="flex flex-col gap-3">
         {studies.map(s => (
-          <li key={s.id}>
+          <li key={s.id} id={s.slug}>
             <CaseStudyRow study={s} />
           </li>
         ))}

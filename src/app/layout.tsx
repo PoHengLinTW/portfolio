@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import { BackToTop } from '@/components/back-to-top'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const jetbrains = JetBrains_Mono({
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {children}
+        <BackToTop />
       </body>
     </html>
   )
