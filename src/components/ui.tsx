@@ -43,21 +43,10 @@ export function MoreLink({ href, children, external }: { href: string; children:
 }
 
 /** A hoverable row: date/media column on the left, content on the right (the Split Index list item). */
-export function Row({
-  aside,
-  children,
-  featured = false
-}: {
-  aside: React.ReactNode
-  children: React.ReactNode
-  featured?: boolean
-}) {
+export function Row({ aside, children }: { aside: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div
-      className={`group relative -mx-4 flex flex-wrap gap-x-6 gap-y-2 rounded-xl border p-4 transition-colors sm:-mx-6 sm:p-6 ${
-        featured ? 'border-surface-line bg-surface' : 'border-transparent hover:border-surface-line hover:bg-surface'
-      }`}
-    >
+    // Rows bleed into the gutter so their text lines up with the section heading.
+    <div className="group relative -mx-4 flex flex-wrap gap-x-6 gap-y-2 rounded-xl border border-transparent p-4 transition-colors hover:border-surface-line hover:bg-surface sm:-mx-6 sm:p-6">
       <div className="shrink-0 basis-[140px] pt-0.5 font-mono text-xs tracking-[0.08em] text-muted uppercase">
         {aside}
       </div>

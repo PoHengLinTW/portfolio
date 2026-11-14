@@ -1,36 +1,50 @@
+import Link from 'next/link'
+import type { Route } from 'next'
 import { getPosts, getSettings } from '@/lib/db'
-import { SiteHeader } from './site-header'
-import { Footer } from './ui'
+import { SplitLayout, type SplitNav } from './split-layout'
 
-/** Header + centered column used by /work, /experience, /projects and /writing. */
+/**
+ * SplitLayout with a standard page intro (back link, eyebrow, title, description) in the pinned
+ * left column. Used by /work, /experience, /projects and /writing and their detail pages.
+ */
 export async function PageShell({
   eyebrow,
   title,
   intro,
-  children,
-  wide = false
+  back,
+  nav,
+  children
 }: {
   eyebrow?: string
   title: string
   intro?: React.ReactNode
+  back?: { href: string; label: string }
+  nav?: SplitNav
   children: React.ReactNode
-  wide?: boolean
 }) {
   const [settings, posts] = await Promise.all([getSettings(), getPosts()])
   return (
-    <>
-      <SiteHeader name={settings.name ?? 'Home'} showWriting={posts.length > 0} />
-      <main id="content" className={`mx-auto px-4 pt-16 pb-20 sm:px-6 sm:pt-24 ${wide ? 'max-w-[1160px]' : 'max-w-3xl'}`}>
-        <div className="mb-14 max-w-2xl">
+    <SplitLayout
+      settings={settings}
+      showWriting={posts.length > 0}
+      nav={nav}
+      intro={
+        <div>
+          {back && (
+            <Link
+              href={back.href as Route}
+              className="eyebrow mb-4 inline-flex min-h-11 items-center hover:text-fg-strong"
+            >
+              ← {back.label}
+            </Link>
+          )}
           {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-          <h1 className="text-4xl font-semibold tracking-tight text-fg-strong sm:text-5xl">{title}</h1>
+          <h1 className="text-4xl leading-tight font-semibold tracking-tight text-balance text-fg-strong">{title}</h1>
           {intro && <p className="mt-4 text-lg text-fg-sub">{intro}</p>}
         </div>
-        {children}
-        <div className="mt-24">
-          <Footer settings={settings} />
-        </div>
-      </main>
-    </>
+      }
+    >
+      <div>{children}</div>
+    </SplitLayout>
   )
 }

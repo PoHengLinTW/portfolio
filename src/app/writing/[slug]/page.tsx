@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPost } from '@/lib/db'
 import { renderMarkdown } from '@/lib/markdown'
@@ -18,13 +17,17 @@ export async function generateMetadata({ params }: PageProps<'/writing/[slug]'>)
 export default async function PostPage({ params }: PageProps<'/writing/[slug]'>) {
   const post = await getPost((await params).slug)
   if (!post) notFound()
-  const { html } = renderMarkdown(post.body_md)
+  const { html, toc } = renderMarkdown(post.body_md)
+  const chapters = toc.filter(t => t.depth === 2).map(t => ({ id: t.id, label: t.text }))
   return (
-    <PageShell eyebrow={post.published_at} title={post.title} intro={post.summary}>
-      <article className="prose-site" dangerouslySetInnerHTML={{ __html: html }} />
-      <Link href="/writing" className="eyebrow mt-16 inline-flex min-h-11 items-center hover:text-fg-strong">
-        ← All writing
-      </Link>
+    <PageShell
+      back={{ href: '/writing', label: 'All writing' }}
+      eyebrow={post.published_at}
+      title={post.title}
+      intro={post.summary}
+      nav={{ items: chapters, label: 'On this page', variant: 'toc' }}
+    >
+      <article className="prose-site max-w-[680px]" dangerouslySetInnerHTML={{ __html: html }} />
     </PageShell>
   )
 }
