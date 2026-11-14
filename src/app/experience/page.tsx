@@ -16,36 +16,51 @@ export default async function ExperiencePage() {
     getSkillGroups(),
     getSettings()
   ])
+  const sections = [
+    { id: 'roles', label: 'Roles' },
+    education.length && { id: 'education', label: 'Education' },
+    skills.length && { id: 'skills', label: 'Skills' }
+  ].filter(Boolean) as { id: string; label: string }[]
   return (
     <PageShell
       eyebrow="Experience"
+      nav={{ items: sections, label: 'On this page' }}
       title="Where I've worked"
       intro={
         <>
-          The full version of my experience. Prefer a PDF?{' '}
+          The full version of my experience.
           {settings.resume_url && (
-            <a href={settings.resume_url} target="_blank" rel="noreferrer" className="text-accent underline underline-offset-4">
-              Download my résumé
-            </a>
+            <>
+              {' '}
+              Prefer a PDF?{' '}
+              <a
+                href={settings.resume_url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-accent underline underline-offset-4"
+              >
+                Download my résumé
+              </a>
+              .
+            </>
           )}
-          .
         </>
       }
     >
       <div className="flex flex-col gap-20">
-        <section aria-labelledby="roles-h">
+        <section id="roles" aria-labelledby="roles-h">
           <SectionHeading id="roles-h">Roles</SectionHeading>
           <ol className="flex flex-col gap-3">
-            {roles.map((r, i) => (
+            {roles.map(r => (
               <li key={r.id}>
-                <RoleRow role={r} featured={i === 0} />
+                <RoleRow role={r} />
               </li>
             ))}
           </ol>
         </section>
 
         {education.length > 0 && (
-          <section aria-labelledby="edu-h">
+          <section id="education" aria-labelledby="edu-h">
             <SectionHeading id="edu-h">Education</SectionHeading>
             <ul className="flex flex-col">
               {education.map(e => (
@@ -67,7 +82,7 @@ export default async function ExperiencePage() {
         )}
 
         {skills.length > 0 && (
-          <section aria-labelledby="skills-h">
+          <section id="skills" aria-labelledby="skills-h">
             <SectionHeading id="skills-h">Skills</SectionHeading>
             <dl className="grid gap-x-6 gap-y-4 sm:grid-cols-[140px_1fr]">
               {skills.map(g => (
