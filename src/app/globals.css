@@ -1,18 +1,18 @@
 @import 'tailwindcss';
 
-/* Palette tokens. Dark is the "Split Index" palette; light mirrors it. Follows the OS setting. */
+/* Palette tokens: warm paper and ink with a terracotta accent (echoes the shiba avatar). Follows the OS setting. */
 :root {
-  --bg: #f6f9f9;
+  --bg: #faf7f2;
   --surface: #ffffff;
-  --surface-line: #dde7e7;
-  --line: #c9d8d9;
-  --fg: #3b4d52;
-  --fg-strong: #0b1215;
-  --fg-sub: #1f2f33;
-  --muted: #5f7277;
-  --accent: #0f766e;
-  --accent-soft: #e0f2ef;
-  --monogram: #e6f0ef;
+  --surface-line: #ece5da;
+  --line: #ddd3c4;
+  --fg: #4a4038;
+  --fg-strong: #1c1712;
+  --fg-sub: #2e2620;
+  --muted: #7a6d60;
+  --accent: #c2410c;
+  --accent-soft: #fcede2;
+  --monogram: #f3ebe0;
   /* Height of the sticky SiteHeader; sticky columns and anchor offsets sit below it. */
   --header-h: 4rem;
   color-scheme: light;
@@ -20,17 +20,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0b1215;
-    --surface: #0f1a1e;
-    --surface-line: #16282d;
-    --line: #1f3a40;
-    --fg: #9fb0b6;
-    --fg-strong: #eef4f5;
-    --fg-sub: #dbe5e7;
-    --muted: #7d9096;
-    --accent: #5eead4;
-    --accent-soft: #10302f;
-    --monogram: #13242a;
+    --bg: #161311;
+    --surface: #1d1916;
+    --surface-line: #2a241f;
+    --line: #3a3129;
+    --fg: #b5a99c;
+    --fg-strong: #f5efe7;
+    --fg-sub: #e4dbd0;
+    --muted: #8f8275;
+    --accent: #fb923c;
+    --accent-soft: #3a2416;
+    --monogram: #241e19;
     color-scheme: dark;
   }
 }
