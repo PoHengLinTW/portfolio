@@ -45,7 +45,6 @@ public/             Static files (see below)
 - **Text content** (settings, experience, case studies, projects, posts) lives in D1. Edit it at `/admin`, which is protected by Cloudflare Access in production.
 - **Static files** live in `public/` and need a deploy to change:
   - `resume.pdf`: the résumé (`/resume` redirects here)
-  - `images/headshot.jpg`: the homepage headshot, a 320×320 square crop shown at 64×64. The `headshot_url` setting points here.
   - `images/yalnix.png`, `images/mydb.png`, `images/oneclickmeeting.png`: project images
   - `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `card.png`: icons and the Open Graph image
   - `_headers`: Cloudflare cache headers for static assets

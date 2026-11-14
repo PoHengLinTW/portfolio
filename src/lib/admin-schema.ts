@@ -147,7 +147,6 @@ export function getEntity(key: string): Entity | null {
 /** Known settings keys, in display order. Unknown keys already in the table are still editable. */
 export const SETTINGS_FIELDS: Field[] = [
   { name: 'name', label: 'Name', type: 'text' },
-  { name: 'full_name', label: 'Full name', type: 'text', help: 'Used as the headshot alt text.' },
   { name: 'title', label: 'Title', type: 'text' },
   { name: 'headline', label: 'Headline', type: 'text', help: 'Under your name on the homepage.' },
   { name: 'tagline', label: 'Tagline', type: 'textarea' },
@@ -156,7 +155,6 @@ export const SETTINGS_FIELDS: Field[] = [
   { name: 'github', label: 'GitHub URL', type: 'text' },
   { name: 'linkedin', label: 'LinkedIn URL', type: 'text' },
   { name: 'resume_url', label: 'Résumé URL', type: 'text' },
-  { name: 'headshot_url', label: 'Headshot URL', type: 'text' },
   { name: 'about_md', label: 'About (Markdown)', type: 'markdown', help: 'Shown first on the homepage.' },
   { name: 'intro', label: 'Intro (fallback)', type: 'textarea', help: 'Only used if About is empty.' }
 ]
