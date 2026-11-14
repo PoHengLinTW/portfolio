@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { ShibaAvatar } from './shiba-avatar'
+import { useScrolledPast } from './use-scrolled-past'
 
 const NAV = [
   { href: '/work', label: 'Work' },
@@ -10,45 +12,65 @@ const NAV = [
   { href: '/writing', label: 'Writing' }
 ] as const
 
-/** Top bar for every page except the homepage, which has the Split Index left column instead. */
-export function SiteHeader({ name, showWriting }: { name: string; showWriting: boolean }) {
+/**
+ * Sticky top bar on every public page. Its height is `--header-h` (globals.css), which other
+ * sticky elements and anchor scroll offsets use to stay clear of it.
+ *
+ * With `morph`, the brand's name starts hidden (`data-docked="false"`) and HeroIdentity animates the
+ * homepage name into it as the page scrolls, then reveals it. The avatar shows from the start.
+ */
+export function SiteHeader({
+  name,
+  showWriting,
+  morph = false
+}: {
+  name: string
+  showWriting: boolean
+  morph?: boolean
+}) {
   const pathname = usePathname()
+  const scrolled = useScrolledPast(4)
   const items = NAV.filter(i => showWriting || i.href !== '/writing')
   return (
-    <header className="mx-auto flex max-w-[1160px] flex-wrap items-center justify-between gap-x-8 gap-y-2 px-4 pt-8 sm:px-6">
-      <Link href="/" className="flex min-h-11 items-center gap-3 font-semibold text-fg-strong hover:text-accent">
-        <span
-          aria-hidden="true"
-          className="grid size-8 place-items-center rounded-full border border-line bg-monogram font-mono text-xs text-accent"
+    <div
+      className={`sticky top-0 z-40 border-b bg-bg/85 backdrop-blur-md transition-colors ${
+        scrolled ? 'border-surface-line' : 'border-transparent'
+      }`}
+    >
+      <header className="mx-auto flex h-(--header-h) max-w-[1160px] items-center justify-between gap-4 px-4 sm:gap-8 sm:px-6">
+        <Link
+          href="/"
+          id="site-brand"
+          aria-label={`${name}, home`}
+          data-docked={morph ? 'false' : undefined}
+          className="flex min-h-11 shrink-0 items-center gap-3 font-semibold group text-fg-strong hover:text-accent"
         >
-          {name
-            .split(/\s+/)
-            .map(w => w[0])
-            .join('')
-            .slice(0, 2)}
-        </span>
-        {name}
-      </Link>
-      <nav aria-label="Main">
-        <ul className="flex flex-wrap gap-x-6">
-          {items.map(i => {
-            const active = pathname === i.href || pathname.startsWith(`${i.href}/`)
-            return (
-              <li key={i.href}>
-                <Link
-                  href={i.href}
-                  aria-current={active ? 'page' : undefined}
-                  className={`flex min-h-11 items-center font-mono text-[13px] tracking-[0.1em] uppercase ${
-                    active ? 'text-accent' : 'text-muted hover:text-fg-strong'
-                  }`}
-                >
-                  {i.label}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
-    </header>
+          <ShibaAvatar className="size-9 shrink-0 rounded-full border border-line" />
+          <span data-brand-name className="hidden group-data-[docked=false]:invisible sm:inline">
+            {name}
+          </span>
+        </Link>
+        <nav aria-label="Main">
+          <ul className="flex gap-x-4 sm:gap-x-6">
+            {items.map(i => {
+              const active = pathname === i.href || pathname.startsWith(`${i.href}/`)
+              return (
+                <li key={i.href}>
+                  <Link
+                    href={i.href}
+                    aria-current={active ? 'page' : undefined}
+                    className={`flex min-h-11 items-center font-mono text-xs tracking-[0.06em] uppercase sm:text-[13px] sm:tracking-[0.1em] ${
+                      active ? 'text-accent' : 'text-muted hover:text-fg-strong'
+                    }`}
+                  >
+                    {i.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+      </header>
+    </div>
   )
 }

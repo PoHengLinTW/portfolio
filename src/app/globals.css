@@ -13,6 +13,8 @@
   --accent: #0f766e;
   --accent-soft: #e0f2ef;
   --monogram: #e6f0ef;
+  /* Height of the sticky SiteHeader; sticky columns and anchor offsets sit below it. */
+  --header-h: 4rem;
   color-scheme: light;
 }
 
@@ -68,7 +70,7 @@
     @apply rounded outline-2 outline-offset-3 outline-accent;
   }
   [id] {
-    scroll-margin-top: 3rem;
+    scroll-margin-top: calc(var(--header-h) + 2rem);
   }
 }
 

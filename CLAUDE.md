@@ -20,7 +20,7 @@ npm run db:migrate:local    # apply migrations/ to the local D1 (run before firs
 npm run db:migrate:remote   # apply migrations/ to production D1
 ```
 
-There is no test suite. Verify changes with `npm run lint && npm run typecheck`, and `npm run preview` for anything Cloudflare-runtime specific.
+There is no test suite. Verify changes with `npm run lint && npm run typecheck`, and `npm run preview` for anything Cloudflare-runtime specific. GitHub Actions (`.github/workflows/ci.yml`) runs lint, typecheck, a local D1 migration apply, and the OpenNext build on every PR and push to `main`.
 
 ## Architecture
 
