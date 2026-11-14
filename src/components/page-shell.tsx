@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { Route } from 'next'
-import { getPosts, getSettings } from '@/lib/db'
+import { getSettings } from '@/lib/db'
 import { SplitLayout, type SplitNav } from './split-layout'
 
 /**
@@ -22,11 +22,10 @@ export async function PageShell({
   nav?: SplitNav
   children: React.ReactNode
 }) {
-  const [settings, posts] = await Promise.all([getSettings(), getPosts()])
+  const settings = await getSettings()
   return (
     <SplitLayout
       settings={settings}
-      showWriting={posts.length > 0}
       nav={nav}
       intro={
         <div>

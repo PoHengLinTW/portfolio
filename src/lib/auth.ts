@@ -1,4 +1,5 @@
 import 'server-only'
+import { cache } from 'react'
 import { headers } from 'next/headers'
 import { createRemoteJWKSet, jwtVerify } from 'jose'
 import { getCloudflareContext } from '@opennextjs/cloudflare'
@@ -13,7 +14,8 @@ import { getCloudflareContext } from '@opennextjs/cloudflare'
 
 let jwks: ReturnType<typeof createRemoteJWKSet> | undefined
 
-export async function getAdminEmail(): Promise<string | null> {
+/** Cached per request: the /admin layouts and the page can all ask without re-verifying the JWT. */
+export const getAdminEmail = cache(async (): Promise<string | null> => {
   if (process.env.NODE_ENV === 'development') return 'local-dev'
 
   const { env } = await getCloudflareContext({ async: true })
@@ -32,7 +34,7 @@ export async function getAdminEmail(): Promise<string | null> {
   } catch {
     return null
   }
-}
+})
 
 export async function requireAdmin(): Promise<string> {
   const email = await getAdminEmail()

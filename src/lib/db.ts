@@ -125,8 +125,12 @@ export const getCaseStudies = cache((includeDrafts = false) =>
   )
 )
 
-export const getCaseStudy = cache((slug: string) =>
-  first<CaseStudy>('SELECT * FROM case_studies WHERE slug = ? AND published = 1', slug)
+/** `includeDrafts` is for admin previews only. */
+export const getCaseStudy = cache((slug: string, includeDrafts = false) =>
+  first<CaseStudy>(
+    `SELECT * FROM case_studies WHERE slug = ? ${includeDrafts ? '' : 'AND published = 1'}`,
+    slug
+  )
 )
 
 export const getRoles = cache(() => all<Role>('SELECT * FROM roles ORDER BY sort, id'))
@@ -143,6 +147,7 @@ export const getPosts = cache(() =>
   all<Post>('SELECT * FROM posts WHERE published = 1 ORDER BY published_at DESC, id DESC')
 )
 
-export const getPost = cache((slug: string) =>
-  first<Post>('SELECT * FROM posts WHERE slug = ? AND published = 1', slug)
+/** `includeDrafts` is for admin previews only. */
+export const getPost = cache((slug: string, includeDrafts = false) =>
+  first<Post>(`SELECT * FROM posts WHERE slug = ? ${includeDrafts ? '' : 'AND published = 1'}`, slug)
 )

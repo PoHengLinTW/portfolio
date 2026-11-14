@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Route } from 'next'
 import { notFound } from 'next/navigation'
 import { getDB } from '@/lib/db'
-import { getEntity } from '@/lib/admin-schema'
+import { getEntity, previewPath } from '@/lib/admin-schema'
 import { Notice } from '../form-fields'
 
 export default async function EntityList({ params, searchParams }: PageProps<'/admin/[entity]'>) {
@@ -38,6 +38,11 @@ export default async function EntityList({ params, searchParams }: PageProps<'/a
                 {entity.subtitleField && <p className="text-sm text-muted">{String(row[entity.subtitleField] ?? '')}</p>}
               </div>
               <div className="flex items-center gap-4 text-sm">
+                {previewPath(entity, row) && (
+                  <Link href={previewPath(entity, row) as Route} className="text-muted hover:text-accent">
+                    Preview
+                  </Link>
+                )}
                 {hasPublished && (
                   <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${row.published ? 'bg-accent-soft text-accent' : 'bg-bg text-muted'}`}>
                     {row.published ? 'Published' : 'Draft'}

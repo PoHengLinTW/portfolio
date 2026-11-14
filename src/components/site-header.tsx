@@ -19,25 +19,16 @@ const NAV = [
  * With `morph`, the brand's name starts hidden (`data-docked="false"`) and HeroIdentity animates the
  * homepage name into it as the page scrolls, then reveals it. The avatar shows from the start.
  */
-export function SiteHeader({
-  name,
-  showWriting,
-  morph = false
-}: {
-  name: string
-  showWriting: boolean
-  morph?: boolean
-}) {
+export function SiteHeader({ name, morph = false }: { name: string; morph?: boolean }) {
   const pathname = usePathname()
   const scrolled = useScrolledPast(4)
-  const items = NAV.filter(i => showWriting || i.href !== '/writing')
   return (
     <div
       className={`sticky top-0 z-40 border-b bg-bg/85 backdrop-blur-md transition-colors ${
         scrolled ? 'border-surface-line' : 'border-transparent'
       }`}
     >
-      <header className="mx-auto flex h-(--header-h) max-w-[1160px] items-center justify-between gap-4 px-4 sm:gap-8 sm:px-6">
+      <header className="mx-auto flex h-(--header-h) max-w-[1160px] items-center justify-between gap-3 px-4 sm:gap-8 sm:px-6">
         <Link
           href="/"
           id="site-brand"
@@ -51,15 +42,15 @@ export function SiteHeader({
           </span>
         </Link>
         <nav aria-label="Main">
-          <ul className="flex gap-x-4 sm:gap-x-6">
-            {items.map(i => {
+          <ul className="flex gap-x-3 sm:gap-x-6">
+            {NAV.map(i => {
               const active = pathname === i.href || pathname.startsWith(`${i.href}/`)
               return (
                 <li key={i.href}>
                   <Link
                     href={i.href}
                     aria-current={active ? 'page' : undefined}
-                    className={`flex min-h-11 items-center font-mono text-xs tracking-[0.06em] uppercase sm:text-[13px] sm:tracking-[0.1em] ${
+                    className={`flex min-h-11 items-center font-mono text-xs tracking-[0.02em] uppercase sm:text-[13px] sm:tracking-[0.1em] ${
                       active ? 'text-accent' : 'text-muted hover:text-fg-strong'
                     }`}
                   >
