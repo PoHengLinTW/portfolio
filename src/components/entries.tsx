@@ -26,19 +26,11 @@ export function CaseStudyRow({ study }: { study: CaseStudy }) {
   )
 }
 
-export function RoleRow({
-  role,
-  highlightLimit,
-  featured
-}: {
-  role: Role
-  highlightLimit?: number
-  featured?: boolean
-}) {
+export function RoleRow({ role, highlightLimit }: { role: Role; highlightLimit?: number }) {
   const highlights = highlightLimit ? role.highlights.slice(0, highlightLimit) : role.highlights
   const period = [role.start, role.end].filter(Boolean).join(' — ')
   return (
-    <Row aside={period} featured={featured}>
+    <Row aside={period}>
       <h3 className="text-[17px] leading-snug font-medium text-fg-strong">
         {role.title} ·{' '}
         {role.url ? (
