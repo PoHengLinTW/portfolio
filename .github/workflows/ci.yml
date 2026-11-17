@@ -7,7 +7,8 @@ on:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Supersede stale PR runs, but never cancel a main run that may be mid-migration or mid-deploy.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -40,3 +41,35 @@ jobs:
         run: npx opennextjs-cloudflare build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+
+  # Every push to main (i.e. every merged PR) migrates production D1, then deploys. Migrations run
+  # first, so each one must keep working with the code that is live until the deploy finishes.
+  deploy:
+    name: Migrate and deploy
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: Production
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Apply D1 migrations to production
+        run: npm run db:migrate:remote
+
+      - name: Build and deploy the Worker
+        run: npm run deploy
