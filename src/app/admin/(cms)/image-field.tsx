@@ -1,13 +1,13 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { uploadMedia } from './actions'
+import { uploadFile } from './upload'
 
 const ACCEPT = 'image/png,image/jpeg,image/gif,image/webp,image/avif'
 
 /**
  * An image URL input with a preview and an Upload button that stores the file in R2 (via the same
- * `uploadMedia` action as the Markdown editor) and fills in its /media/... URL.
+ * /admin/api/upload route as the Markdown editor) and fills in its /media/... URL.
  */
 export function ImageField({
   id,
@@ -32,9 +32,7 @@ export function ImageField({
     setError(null)
     setUploading(true)
     try {
-      const form = new FormData()
-      form.set('file', file)
-      const res = await uploadMedia(form)
+      const res = await uploadFile(file)
       if ('url' in res) setUrl(res.url)
       else setError(res.error)
     } catch {
