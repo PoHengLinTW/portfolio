@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: { default: 'Henry Lin', template: '%s · Henry Lin' },
   description: 'Henry Lin — software engineer building web platforms at Bloomberg.',
   openGraph: { siteName: 'Henry Lin', type: 'website', images: ['/card.png'] },
+  twitter: { card: 'summary_large_image', images: ['/card.png'] },
   icons: { icon: [{ url: '/favicon.ico' }, { url: '/favicon.svg', type: 'image/svg+xml' }], apple: '/apple-touch-icon.png' }
 }
 

@@ -8,6 +8,8 @@ export interface Field {
   type: FieldType
   required?: boolean
   help?: string
+  /** For `image` fields: preview as a round avatar (default) or a wide 1.91:1 card. */
+  preview?: 'avatar' | 'card'
 }
 
 export interface Entity {
@@ -135,6 +137,13 @@ export const ENTITIES = {
       { name: 'title', label: 'Title', type: 'text', required: true },
       { name: 'slug', label: 'Slug', type: 'text', required: true, help: 'URL: /writing/<slug>' },
       { name: 'summary', label: 'Summary', type: 'textarea' },
+      {
+        name: 'cover_image',
+        label: 'Social image',
+        type: 'image',
+        preview: 'card',
+        help: 'Shown when the post is shared on LinkedIn, Slack or X. Use a 1200×630 PNG or JPEG (not a GIF). Leave empty to use the site card.'
+      },
       { name: 'published_at', label: 'Date', type: 'date' },
       { name: 'body_md', label: 'Body (Markdown)', type: 'markdown' },
       { name: 'published', label: 'Published', type: 'boolean', help: 'The homepage Writing section appears once a post is published.' }

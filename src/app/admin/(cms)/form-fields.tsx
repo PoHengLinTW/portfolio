@@ -41,7 +41,7 @@ export function FormField({ field, value, name = field.name }: { field: Field; v
       control = <MarkdownEditor id={id} name={name} defaultValue={str} className={input} describedBy={describedBy} />
       break
     case 'image':
-      control = <ImageField id={id} name={name} defaultValue={str} className={input} describedBy={describedBy} />
+      control = <ImageField id={id} name={name} defaultValue={str} className={input} describedBy={describedBy} preview={field.preview} />
       break
     case 'number':
       control = <input id={id} type="number" name={name} defaultValue={str} className={`${input} max-w-32`} aria-describedby={describedBy} />

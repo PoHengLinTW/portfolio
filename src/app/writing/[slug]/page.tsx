@@ -8,10 +8,14 @@ import { getReads } from '@/lib/stats'
 export async function generateMetadata({ params }: PageProps<'/writing/[slug]'>): Promise<Metadata> {
   const post = await getPost((await params).slug)
   if (!post) return {}
+  // A page's openGraph replaces the layout's entirely, so the image must be set here too. Without one,
+  // LinkedIn falls back to the first image in the article.
+  const images = [post.cover_image || '/card.png']
   return {
     title: post.title,
     description: post.summary,
-    openGraph: { type: 'article', title: post.title, description: post.summary, publishedTime: post.published_at }
+    openGraph: { type: 'article', title: post.title, description: post.summary, publishedTime: post.published_at, images },
+    twitter: { card: 'summary_large_image', title: post.title, description: post.summary, images }
   }
 }
 
