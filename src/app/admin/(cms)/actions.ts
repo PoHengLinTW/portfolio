@@ -6,44 +6,6 @@ import type { Route } from 'next'
 import { requireAdmin } from '@/lib/auth'
 import { getDB } from '@/lib/db'
 import { getEntity, SETTINGS_FIELDS, type Field } from '@/lib/admin-schema'
-import { getMediaBucket, MAX_UPLOAD_BYTES, MEDIA_TYPES, mediaUrl } from '@/lib/media'
-
-export type UploadResult = { url: string } | { error: string }
-
-/**
- * Stores an image/GIF/video in R2 under a content hash, so re-uploading the same file is a no-op
- * and URLs can be cached forever. Returns an error object rather than throwing, because thrown
- * messages are redacted in production and the editor needs to show what went wrong.
- */
-export async function uploadMedia(form: FormData): Promise<UploadResult> {
-  await requireAdmin()
-  const file = form.get('file')
-  if (!(file instanceof File) || file.size === 0) return { error: 'No file received.' }
-  const ext = MEDIA_TYPES[file.type]
-  if (!ext)
-    return {
-      error: `Unsupported file type ${file.type || '(unknown)'}. Use PNG, JPEG, GIF, WebP, AVIF, MP4 or WebM.`
-    }
-  if (file.size > MAX_UPLOAD_BYTES) {
-    return {
-      error: `File is ${(file.size / 1048576).toFixed(1)} MB; the limit is ${MAX_UPLOAD_BYTES / 1048576} MB.`
-    }
-  }
-
-  const bytes = await file.arrayBuffer()
-  const digest = await crypto.subtle.digest('SHA-256', bytes)
-  const hash = Array.from(new Uint8Array(digest).slice(0, 12), b => b.toString(16).padStart(2, '0')).join('')
-  const key = `uploads/${hash}.${ext}`
-
-  const bucket = await getMediaBucket()
-  if (!(await bucket.head(key))) {
-    await bucket.put(key, bytes, {
-      httpMetadata: { contentType: file.type },
-      customMetadata: { originalName: file.name.slice(0, 200) }
-    })
-  }
-  return { url: mediaUrl(key) }
-}
 
 function readField(field: Field, form: FormData): string | number {
   const raw = form.get(field.name)

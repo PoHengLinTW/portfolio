@@ -2,7 +2,7 @@
 
 import { useDeferredValue, useMemo, useRef, useState } from 'react'
 import { renderMarkdown } from '@/lib/markdown'
-import { uploadMedia } from './actions'
+import { uploadFile } from './upload'
 
 const ACCEPT = 'image/png,image/jpeg,image/gif,image/webp,image/avif,video/mp4,video/webm'
 const isMedia = (f: File) => f.type.startsWith('image/') || f.type.startsWith('video/')
@@ -70,9 +70,7 @@ export function MarkdownEditor({
       media.map(async (file, i) => {
         let replacement = ''
         try {
-          const form = new FormData()
-          form.set('file', file)
-          const res = await uploadMedia(form)
+          const res = await uploadFile(file)
           if ('url' in res) replacement = `![${altFor(file.name)}](${res.url})`
           else setError(`${file.name}: ${res.error}`)
         } catch {
