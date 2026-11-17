@@ -18,6 +18,11 @@ export default async function CmsLayout({ children }: { children: React.ReactNod
                 Settings
               </Link>
             </li>
+            <li>
+              <Link href="/admin/stats" className="flex min-h-10 items-center text-fg-strong hover:text-accent">
+                Post stats
+              </Link>
+            </li>
             {Object.entries(ENTITIES).map(([key, e]) => (
               <li key={key}>
                 <Link href={`/admin/${key}`} className="flex min-h-10 items-center text-fg-strong hover:text-accent">
