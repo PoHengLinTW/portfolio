@@ -9,6 +9,38 @@ export interface SpyItem {
 }
 
 /**
+ * Id of the section currently in view: the last of `ids` whose top has passed 35% of the viewport,
+ * or the last one once the page is scrolled to the bottom.
+ */
+export function useActiveSection(ids: string[]): string | undefined {
+  const [active, setActive] = useState(ids[0])
+  const key = ids.join('\n')
+
+  useEffect(() => {
+    const els = key
+      .split('\n')
+      .map(id => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el)
+    if (!els.length) return
+    const onScroll = () => {
+      const line = window.innerHeight * 0.35
+      let current = els[0].id
+      for (const el of els) if (el.getBoundingClientRect().top <= line) current = el.id
+      // At the very bottom, the last section wins even if it is short.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = els[els.length - 1].id
+      }
+      setActive(current)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [key])
+
+  return active
+}
+
+/**
  * Sticky in-page navigation that highlights the section currently in view.
  * Used for the homepage sections and for case-study chapters.
  */
@@ -23,26 +55,7 @@ export function ScrollSpyNav({
   extra?: React.ReactNode
   variant?: 'lines' | 'toc'
 }) {
-  const [active, setActive] = useState(items[0]?.id)
-
-  useEffect(() => {
-    const els = items.map(i => document.getElementById(i.id)).filter((el): el is HTMLElement => !!el)
-    if (!els.length) return
-    const onScroll = () => {
-      // The active section is the last one whose top has passed 35% of the viewport.
-      const line = window.innerHeight * 0.35
-      let current = els[0].id
-      for (const el of els) if (el.getBoundingClientRect().top <= line) current = el.id
-      // At the very bottom, the last section wins even if it is short.
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
-        current = els[els.length - 1].id
-      }
-      setActive(current)
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [items])
+  const active = useActiveSection(items.map(i => i.id))
 
   if (variant === 'toc') {
     return (
