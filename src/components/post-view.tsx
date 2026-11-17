@@ -1,6 +1,7 @@
 import type { Post } from '@/lib/db'
 import { renderMarkdown } from '@/lib/markdown'
 import { PageShell } from './page-shell'
+import { AuthorCard } from './author-card'
 
 /** A writing post as it appears at /writing/[slug]. Shared with the admin draft preview. */
 export function PostView({ post, reads = 0 }: { post: Post; reads?: number }) {
@@ -15,6 +16,7 @@ export function PostView({ post, reads = 0 }: { post: Post; reads?: number }) {
       nav={{ items: chapters, label: 'On this page', variant: 'toc' }}
     >
       <article className="prose-site max-w-[680px]" dangerouslySetInnerHTML={{ __html: html }} />
+      <AuthorCard />
     </PageShell>
   )
 }
