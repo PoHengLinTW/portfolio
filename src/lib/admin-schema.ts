@@ -89,7 +89,7 @@ export const ENTITIES = {
       { name: 'description', label: 'Description', type: 'textarea' },
       { name: 'details', label: 'Details', type: 'list', help: 'One per line. Shown on /projects.' },
       { name: 'tags', label: 'Tech', type: 'list', help: 'One per line.' },
-      { name: 'image_url', label: 'Image URL', type: 'text', help: 'e.g. /images/yalnix.png' },
+      { name: 'image_url', label: 'Image URL', type: 'text', help: 'A /media/... URL: upload with Insert media in any Markdown editor and copy its URL.' },
       { name: 'link_url', label: 'Link URL', type: 'text' },
       { name: 'link_label', label: 'Link label', type: 'text', help: 'e.g. Source' },
       sort

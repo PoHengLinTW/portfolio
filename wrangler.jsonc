@@ -41,6 +41,14 @@
 			"migrations_dir": "migrations"
 		}
 	],
+	"r2_buckets": [
+		{
+			// Images, GIFs and videos uploaded from the admin Markdown editor, served at /media/<key>.
+			// Create with `npx wrangler r2 bucket create portfolio-media`.
+			"binding": "MEDIA",
+			"bucket_name": "portfolio-media"
+		}
+	],
 	"vars": {
 		// Cloudflare Access application protecting henrylin.dev/admin* (policy: owner email only).
 		"CF_ACCESS_TEAM_DOMAIN": "henrylin98.cloudflareaccess.com",

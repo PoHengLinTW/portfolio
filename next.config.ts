@@ -2,6 +2,10 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
+  experimental: {
+    // Admin media uploads go through a server action; keep in step with MAX_UPLOAD_BYTES in src/lib/media.ts.
+    serverActions: { bodySizeLimit: '25mb' }
+  },
   async redirects() {
     return [
       { source: '/resume', destination: '/resume.pdf', permanent: true },
