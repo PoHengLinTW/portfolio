@@ -1,6 +1,6 @@
 /** Describes each editable content table. Column names come only from here, never from user input. */
 
-export type FieldType = 'text' | 'textarea' | 'markdown' | 'number' | 'boolean' | 'list' | 'date'
+export type FieldType = 'text' | 'textarea' | 'markdown' | 'number' | 'boolean' | 'list' | 'date' | 'image'
 
 export interface Field {
   name: string
@@ -158,7 +158,8 @@ export function getEntity(key: string): Entity | null {
 export const SETTINGS_FIELDS: Field[] = [
   { name: 'name', label: 'Name', type: 'text' },
   { name: 'title', label: 'Title', type: 'text' },
-  { name: 'headline', label: 'Headline', type: 'text', help: 'Under your name on the homepage.' },
+  { name: 'headline', label: 'Headline', type: 'text', help: 'Under your name on the homepage and in the author card on posts.' },
+  { name: 'author_photo', label: 'Author photo', type: 'image', help: 'Shown with your name and headline at the end of each post. A square photo works best; the shiba is used until you add one.' },
   { name: 'tagline', label: 'Tagline', type: 'textarea' },
   { name: 'location', label: 'Location', type: 'text' },
   { name: 'email', label: 'Email', type: 'text' },
