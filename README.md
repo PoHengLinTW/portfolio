@@ -51,4 +51,8 @@ public/             Static files (see below)
 
 ## Deployment
 
-`npm run deploy` builds and deploys the Worker defined in `wrangler.jsonc`. Before deploying a change that adds a migration, run `npm run db:migrate:remote`.
+Merging to `main` deploys automatically. After lint, typecheck and build pass, the **Migrate and deploy** job in `.github/workflows/ci.yml` runs `npm run db:migrate:remote` and then `npm run deploy`. It uses the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets from the `Production` GitHub environment.
+
+Migrations run before the new code is live, so each migration must work with the code currently deployed. Adding tables or columns is always safe. If a migration depends on new code (for example, data pointing at a route that doesn't exist yet), ship the code in one PR and the migration in the next.
+
+To deploy by hand, run `npm run db:migrate:remote` and then `npm run deploy`.
