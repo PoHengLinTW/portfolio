@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getPost } from '@/lib/db'
 import { PostView } from '@/components/post-view'
+import { PostBeacon } from '@/components/post-beacon'
+import { getReads } from '@/lib/stats'
 
 export async function generateMetadata({ params }: PageProps<'/writing/[slug]'>): Promise<Metadata> {
   const post = await getPost((await params).slug)
@@ -14,7 +16,13 @@ export async function generateMetadata({ params }: PageProps<'/writing/[slug]'>)
 }
 
 export default async function PostPage({ params }: PageProps<'/writing/[slug]'>) {
-  const post = await getPost((await params).slug)
+  const { slug } = await params
+  const post = await getPost(slug)
   if (!post) notFound()
-  return <PostView post={post} />
+  return (
+    <>
+      <PostView post={post} reads={await getReads(slug)} />
+      <PostBeacon slug={slug} />
+    </>
+  )
 }

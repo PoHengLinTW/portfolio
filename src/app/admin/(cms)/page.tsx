@@ -18,6 +18,12 @@ export default async function AdminHome() {
             <p className="text-sm text-muted">Identity, links, About</p>
           </Link>
         </li>
+        <li>
+          <Link href="/admin/stats" className="block rounded-xl border border-surface-line bg-surface p-5 hover:border-accent">
+            <p className="font-medium text-fg-strong">Post stats</p>
+            <p className="text-sm text-muted">Views, visitors and reads per post</p>
+          </Link>
+        </li>
         {Object.entries(ENTITIES).map(([key, e], i) => {
           const n = (counts[i].results[0] as { n: number } | undefined)?.n ?? 0
           return (
