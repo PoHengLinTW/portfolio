@@ -43,13 +43,11 @@ public/             Static files (see below)
 ## Content
 
 - **Text content** (settings, experience, case studies, projects, posts) lives in D1. Edit it at `/admin`, which is protected by Cloudflare Access in production.
+- **Images, GIFs and videos** live in the `portfolio-media` R2 bucket and are served at `/media/...`. Paste, drop, or use **Insert media** in any Markdown editor in the admin: the file uploads and a `![alt](/media/uploads/<hash>.webp)` line is inserted. An image alone on its line becomes a figure; add a caption with `![alt](src "Caption")`. `.mp4`/`.webm` play like a GIF (autoplay, loop, muted), so prefer them over large GIFs. For a project thumbnail, upload the same way and copy the `/media/...` URL into the project's Image URL.
 - **Static files** live in `public/` and need a deploy to change:
   - `resume.pdf`: the résumé (`/resume` redirects here)
-  - `images/yalnix.png`, `images/mydb.png`, `images/oneclickmeeting.png`: project images
   - `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `card.png`: icons and the Open Graph image
   - `_headers`: Cloudflare cache headers for static assets
-
-To add an image, put it in `public/images/`, deploy, then set its path (for example `/images/foo.png`) in the admin.
 
 ## Deployment
 

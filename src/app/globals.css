@@ -123,4 +123,18 @@
   & hr {
     @apply my-10 border-line;
   }
+  & img,
+  & video {
+    @apply h-auto max-w-full rounded-xl border border-surface-line;
+  }
+  & figure {
+    @apply my-8;
+  }
+  & figure > img,
+  & figure > video {
+    @apply mx-auto block;
+  }
+  & figcaption {
+    @apply mt-2.5 text-center text-sm text-muted;
+  }
 }
