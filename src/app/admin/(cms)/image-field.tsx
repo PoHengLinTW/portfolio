@@ -14,14 +14,17 @@ export function ImageField({
   name,
   defaultValue,
   className,
-  describedBy
+  describedBy,
+  preview = 'avatar'
 }: {
   id: string
   name: string
   defaultValue: string
   className: string
   describedBy?: string
+  preview?: 'avatar' | 'card'
 }) {
+  const shape = preview === 'card' ? 'h-20 w-[153px] rounded-lg' : 'size-20 rounded-full'
   const [url, setUrl] = useState(defaultValue)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -46,9 +49,9 @@ export function ImageField({
     <div className="flex flex-wrap items-center gap-4">
       {url ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={url} alt="Current image" className="size-20 shrink-0 rounded-full border border-line object-cover" />
+        <img src={url} alt="Current image" className={`${shape} shrink-0 border border-line object-cover`} />
       ) : (
-        <div className="grid size-20 shrink-0 place-items-center rounded-full border border-dashed border-line text-xs text-muted">
+        <div className={`${shape} grid shrink-0 place-items-center border border-dashed border-line text-xs text-muted`}>
           None
         </div>
       )}

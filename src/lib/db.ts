@@ -24,6 +24,7 @@ export interface CaseStudy {
   body_md: string
   sort: number
   published: number
+  updated_at: string
 }
 
 export interface Role {
@@ -77,6 +78,8 @@ export interface Post {
   body_md: string
   published_at: string
   published: number
+  /** Link-preview image; empty means the site card. */
+  cover_image: string
 }
 
 /** Columns that hold JSON arrays of strings. */
