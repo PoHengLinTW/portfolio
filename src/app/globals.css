@@ -83,15 +83,29 @@
   & > * + * {
     @apply mt-4;
   }
+  /* Body headings start at h2 (renderMarkdown shifts `#` down a level): a clear size step per level,
+     with a hairline above each main section so sections read as breaks. */
   & h2 {
-    @apply mt-14 text-2xl font-semibold tracking-tight text-fg-strong;
+    @apply mt-14 border-t border-line pt-10 text-[1.75rem] leading-tight font-semibold tracking-tight text-fg-strong;
   }
   & h3 {
-    @apply mt-9 text-lg font-semibold text-fg-strong;
+    @apply mt-10 text-xl leading-snug font-semibold tracking-tight text-fg-strong;
   }
-  & h2 + *,
-  & h3 + * {
+  & h4 {
+    @apply mt-8 text-base font-semibold text-fg-strong;
+  }
+  & h5,
+  & h6 {
+    @apply mt-8 font-mono text-[13px] font-medium tracking-[0.12em] text-muted uppercase;
+  }
+  & :is(h2, h3, h4, h5, h6) + * {
     @apply mt-3;
+  }
+  & h2 + * {
+    @apply mt-4;
+  }
+  & > :first-child {
+    @apply mt-0 border-t-0 pt-0;
   }
   & strong {
     @apply font-semibold text-fg-sub;

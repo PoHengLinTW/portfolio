@@ -37,9 +37,9 @@ export function SplitLayout({
   return (
     <>
       <SiteHeader name={settings.name ?? 'Home'} morph={morph} />
-      <div className="mx-auto flex max-w-[1160px] flex-wrap gap-16 px-4 pt-14 pb-20 sm:px-6 sm:pt-24 lg:flex-nowrap lg:pb-0">
+      <div className="mx-auto flex max-w-[1160px] flex-wrap gap-16 px-4 pt-8 pb-20 sm:px-6 sm:pt-10 lg:flex-nowrap lg:pb-0">
         <header
-          className={`flex flex-[1_1_340px] flex-col gap-6 lg:sticky lg:top-(--header-h) lg:-mt-24 lg:h-[calc(100dvh-var(--header-h))] lg:max-w-[420px] lg:pt-24 lg:pb-10 ${
+          className={`flex flex-[1_1_340px] flex-col gap-6 lg:sticky lg:top-(--header-h) lg:-mt-10 lg:h-[calc(100dvh-var(--header-h))] lg:max-w-[420px] lg:pt-10 lg:pb-10 ${
             morph ? 'lg:z-50' : 'lg:-mx-3 lg:overflow-y-auto lg:px-3'
           }`}
         >

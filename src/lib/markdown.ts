@@ -73,10 +73,17 @@ function renderMedia({ href, text }: Tokens.Image): string {
   return `<img src="${src}" alt="${alt}" loading="lazy" decoding="async">`
 }
 
-/** Renders trusted (admin-authored) Markdown to HTML, with ids on headings and a table of contents. */
+/**
+ * Renders trusted (admin-authored) Markdown to HTML, with ids on headings and a table of contents.
+ *
+ * The page title is the page's only <h1>, so body headings start at <h2>: if the Markdown's top
+ * heading level is `#`, every heading is shifted down one level (`#` → h2, `##` → h3, …). TOC depths
+ * use the shifted levels, so section headings are always depth 2.
+ */
 export function renderMarkdown(md: string): { html: string; toc: TocEntry[] } {
   const toc: TocEntry[] = []
   const seen = new Map<string, number>()
+  let shift = 0
   const marked = new Marked({
     gfm: true,
     renderer: {
@@ -86,8 +93,9 @@ export function renderMarkdown(md: string): { html: string; toc: TocEntry[] } {
         const n = seen.get(id) ?? 0
         seen.set(id, n + 1)
         if (n) id = `${id}-${n}`
-        toc.push({ id, text, depth: token.depth })
-        return `<h${token.depth} id="${id}">${this.parser.parseInline(token.tokens)}</h${token.depth}>\n`
+        const depth = Math.min(6, token.depth + shift)
+        toc.push({ id, text, depth })
+        return `<h${depth} id="${id}">${this.parser.parseInline(token.tokens)}</h${depth}>\n`
       },
       link(this: { parser: { parseInline(t: Tokens.Generic[]): string } }, { href, title, tokens }: Tokens.Link) {
         const text = this.parser.parseInline(tokens)
@@ -112,6 +120,9 @@ export function renderMarkdown(md: string): { html: string; toc: TocEntry[] } {
       }
     }
   })
-  const html = marked.parse(stripEmptySections(md), { async: false })
+  const tokens = marked.lexer(stripEmptySections(md))
+  const topLevel = Math.min(7, ...tokens.filter((t): t is Tokens.Heading => t.type === 'heading').map(t => t.depth))
+  shift = topLevel === 1 ? 1 : 0
+  const html = marked.parser(tokens)
   return { html, toc }
 }
