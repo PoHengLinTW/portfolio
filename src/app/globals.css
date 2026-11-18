@@ -151,4 +151,26 @@
   & figcaption {
     @apply mt-2.5 text-center text-sm text-muted;
   }
+  & .table-wrap {
+    @apply my-8 overflow-x-auto rounded-xl border border-surface-line;
+  }
+  & table {
+    @apply w-full border-collapse text-sm leading-relaxed;
+  }
+  & th,
+  & td {
+    @apply px-4 py-2.5 text-left align-top;
+  }
+  & th {
+    @apply border-b border-line bg-surface font-semibold whitespace-nowrap text-fg-strong;
+  }
+  & tbody tr + tr {
+    @apply border-t border-surface-line;
+  }
+  & :is(th, td)[align='center'] {
+    @apply text-center;
+  }
+  & :is(th, td)[align='right'] {
+    @apply text-right tabular-nums;
+  }
 }
