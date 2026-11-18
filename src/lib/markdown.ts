@@ -123,6 +123,10 @@ export function renderMarkdown(md: string): { html: string; toc: TocEntry[] } {
   const tokens = marked.lexer(stripEmptySections(md))
   const topLevel = Math.min(7, ...tokens.filter((t): t is Tokens.Heading => t.type === 'heading').map(t => t.depth))
   shift = topLevel === 1 ? 1 : 0
-  const html = marked.parser(tokens)
+  // Wrap tables so a wide one scrolls sideways inside the text column instead of overflowing it.
+  const html = marked
+    .parser(tokens)
+    .replace(/<table>/g, '<div class="table-wrap"><table>')
+    .replace(/<\/table>/g, '</table></div>')
   return { html, toc }
 }
